@@ -6,8 +6,10 @@ import "./movies.scss";
 import add from "../../assets/add.svg";
 import logout from "../../assets/logout.svg";
 import edit from "../../assets/edit.png";
+import config from "../config";
 
 export default function Movies() {
+  const { serverUrl } = config;
   const [movies, setMovies] = useState<any[]>([]);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 8;
@@ -24,7 +26,7 @@ export default function Movies() {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/movies");
+        const response = await axios.get(`${serverUrl}/api/movies`);
         setMovies(response.data);
       } catch (error) {
         console.error("Error fetching movies:", error);

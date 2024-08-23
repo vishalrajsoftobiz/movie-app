@@ -3,9 +3,11 @@ import "./login.scss";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import config from "../config";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { serverUrl } = config;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,7 +24,7 @@ export default function Login() {
         setError("Password must be at least 6 characters long");
         return;
       }
-      const response = await axios.post(`http://localhost:4000/api/auth/login`, {
+      const response = await axios.post(`${serverUrl}/api/auth/login`, {
         email,
         password,
       });

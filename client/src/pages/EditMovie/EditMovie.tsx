@@ -3,9 +3,11 @@ import axios from "axios";
 import drop from "../../assets/drop.svg";
 import "./editMovie.scss";
 import { useNavigate, useParams } from "react-router-dom";
+import config from "../config";
 
 export default function EditMovie() {
-  const baseURL = "http://localhost:4000/uploads/"
+  const { serverUrl } = config;
+  const baseURL = `${serverUrl}/uploads/`;
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [publishingYear, setPublishingYear] = useState("");
@@ -17,7 +19,7 @@ export default function EditMovie() {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/movies/${id}`);
+        const response = await axios.get(`${serverUrl}/api/movies/${id}`);
         const movie = response.data;
         setTitle(movie.title);
         setPublishingYear(movie.publishingYear);
@@ -54,7 +56,7 @@ export default function EditMovie() {
     }
 
     try {
-      const response = await axios.put(`http://localhost:4000/api/movies/${id}`, formData, {
+      const response = await axios.put(`${serverUrl}/api/movies/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -62,11 +64,11 @@ export default function EditMovie() {
       navigate("/movies");
     } catch (error) {
       console.error("Error updating movie:", error);
-    } 
+    }
   };
-  const handleCancel = () =>{
+  const handleCancel = () => {
     navigate("/movies");
-  }
+  };
 
   return (
     <div className="wrapper movies-wrapper">

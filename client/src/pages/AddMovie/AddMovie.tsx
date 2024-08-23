@@ -3,7 +3,11 @@ import axios from "axios";
 import drop from "../../assets/drop.svg";
 import "./addMovie.scss";
 import { useNavigate } from "react-router-dom";
+import config from "../config";
+
 export default function AddMovie() {
+  const { serverUrl } = config;
+  console.log(serverUrl)
   const [title, setTitle] = useState("");
   const [publishingYear, setPublishingYear] = useState("");
   const [poster, setPoster] = useState<File | null>(null);
@@ -30,12 +34,11 @@ export default function AddMovie() {
       formData.append("poster", poster);
     }
     try {
-      const response = await axios.post("http://localhost:4000/api/movies", formData, {
+      const response = await axios.post(`${serverUrl}/api/movies`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("Movie created:", response.data);
       setTitle("");
       setPublishingYear("");
       setPoster(null);
