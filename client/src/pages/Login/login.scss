@@ -1,0 +1,32 @@
+@import '../../index.scss';
+
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  .sign-in-wrapper {
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+    h1 {
+      margin-bottom: 40px;
+    }
+    .input-field {
+      input {
+        width: 100%;
+      }
+    }
+    .remember-me {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      label {
+        display: inline-block;
+      }
+    }
+    .login-btn {
+      width: 100%;
+    }
+  }
+}
