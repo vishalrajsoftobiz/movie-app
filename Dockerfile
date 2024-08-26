@@ -7,10 +7,7 @@ COPY client/package*.json ./
 
 RUN npm install
 
-# Copy all frontend files
 COPY client/ .
-
-# Build React app
 RUN npm run build
 
 # Stage 2: Set up Node.js backend
@@ -22,13 +19,10 @@ COPY package*.json ./
 
 RUN npm install
 
-# Copy all backend files
 COPY . .
 
 # Copy the built React app from Stage 1
 COPY --from=build /app/client/build ./client/build
-
-# Expose port (Adjust if needed)
 EXPOSE 3000
 
 # Command to start the backend server
