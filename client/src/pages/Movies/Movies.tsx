@@ -85,7 +85,7 @@ export default function Movies() {
               {currentItems.map((movie) => (
                 <div className="movie-card" key={movie._id}>
                   <div className="movie-img">
-                    <img src={`http://localhost:4000/uploads/${movie.poster}`} alt={movie.title} />
+                    <img src={`${serverUrl}/uploads/${movie.poster}`} alt={movie.title} />
                   </div>
                   <div className="movie-details">
                     <div>
