@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const movieRoutes = require('./routes/movieRoutes');
 const authRoutes = require('./routes/authRoutes');
+const chartRoutes = require('./routes/chartRoutes');
 const path = require('path');
 const cors = require('cors');
 
@@ -26,5 +27,6 @@ app.use('/api/auth', authRoutes);
 
 // Routes
 app.use('/api/movies', movieRoutes);
+app.use('/api/chart', chartRoutes);
 
 module.exports = app;
